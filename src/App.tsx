@@ -5,12 +5,14 @@ import routes from '@/router'
 function App() {
   return (
     <div className="App">
-      <Link to={'/discover'}>发现</Link>
-      <Link to={'/mine'}>我的</Link>
-      <Link to={'/focus'}>我的关注</Link>
-      <Link to={'/download'}>下载客户端</Link>
+      <div className="nav">
+        <Link to={'/discover'}>发现</Link>
+        <Link to={'/mine'}>我的</Link>
+        <Link to={'/focus'}>我的关注</Link>
+        <Link to={'/download'}>下载客户端</Link>
+      </div>
       <Suspense fallback={<div>loading...</div>}>
-        <div>{useRoutes(routes)}</div>
+        <div className="main">{useRoutes(routes)}</div>
       </Suspense>
     </div>
   )
