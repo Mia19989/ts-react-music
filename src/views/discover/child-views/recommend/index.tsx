@@ -36,6 +36,7 @@ const Recommend: React.FC<IProps> = () => {
         console.log('请求轮播图数据', err)
       })
   }, [])
+
   return (
     <div>
       {banners.map((val, index) => (
