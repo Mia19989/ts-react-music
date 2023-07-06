@@ -4,6 +4,7 @@ import routes from '@/router'
 import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from './store/hook'
 import { changeMessage } from './store/modules/counter'
+import Demo from './views/demo/demo'
 
 function App() {
   // 返回的是一个 dispatch 类型
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div className="App">
+      <Demo name={'hcc'}></Demo>
       <div className="nav">
         <Link to={'/discover'}>发现</Link>
         <Link to={'/mine'}>我的</Link>
