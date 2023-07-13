@@ -10,7 +10,7 @@ interface IProps {
 const AppHeader: React.FC<IProps> = () => {
   return (
     <HeaderWrapper>
-      <div className="content">
+      <div className="content wrap-v1">
         <Link to={'/discover'}>发现</Link>
         <Link to={'/mine'}>我的</Link>
         <Link to={'/focus'}>我的关注</Link>
