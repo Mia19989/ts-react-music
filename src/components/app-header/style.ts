@@ -13,6 +13,12 @@ export const HeaderWrapper = styled.div`
     /* 主轴方向，元素均匀排列，首尾元素排列在容器两端 */
     justify-content: space-between;
   }
+
+  /* 头部导航栏下面的分割线 */
+  .divider {
+    height: 5px;
+    background-color: #c20c0c;
+  }
 `
 
 // 头部导航栏样式 区分左右
@@ -58,7 +64,7 @@ export const HeaderLeft = styled.div`
 
       /* & 符号通常用于嵌套选择器 */
       /* &:hover - 当前元素在鼠标悬停时的状态 */
-      /* &:active - 当前元素被点击时的状态 */
+      /* .active - NavLink 默认的 class 名称 */
       &:hover a,
       .active {
         color: #fff;
