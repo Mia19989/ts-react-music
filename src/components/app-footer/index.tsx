@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import type { ReactNode } from 'react'
+import { FooterWrapper } from './style'
 
 interface IProps {
   children?: ReactNode
@@ -7,9 +8,9 @@ interface IProps {
 
 const AppFooter: React.FC<IProps> = () => {
   return (
-    <div>
+    <FooterWrapper>
       <h2>AppFooter</h2>
-    </div>
+    </FooterWrapper>
   )
 }
 

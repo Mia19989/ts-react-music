@@ -18,9 +18,6 @@ const NavBar: React.FC<IProps> = () => {
           </div>
         ))}
       </div>
-      <Suspense fallback="">
-        <Outlet />
-      </Suspense>
     </DiscoverNav>
   )
 }
