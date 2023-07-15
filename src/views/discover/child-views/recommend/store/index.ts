@@ -21,33 +21,29 @@ const initialState: IRecommendState = {
 }
 
 // 处理异步操作，可自动生成 action creater
-export const fetchBannerDataAction = createAsyncThunk('banners', async () => {
-  const res = await getBanners()
-  console.log('---请求的banners', res)
-  return res.banners
-})
+export const fetchBannerDataAction = createAsyncThunk(
+  'banners',
+  async (arg, { dispatch }) => {
+    try {
+      const res = await getBanners()
+      dispatch(changeBannersAction(res.banners))
+    } catch (err) {
+      console.log('请求 banner 出错', err)
+    }
+  }
+)
 
 // 创建 slice
 const recommendSlice = createSlice({
   name: 'recommend',
   initialState,
   reducers: {
-    changeData: () => {
-      console.log('---banner')
+    changeBannersAction: (state, { payload }) => {
+      state.banners = payload
     }
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchBannerDataAction.pending, () => {
-        console.log('pending')
-      })
-      .addCase(fetchBannerDataAction.fulfilled, (state, { payload }) => {
-        state.banners = payload
-      })
-      .addCase(fetchBannerDataAction.rejected, () => {
-        console.log('reject')
-      })
   }
 })
 
+// 注意需要导出 action - 方便 dispatch 派发
+export const { changeBannersAction } = recommendSlice.actions
 export default recommendSlice.reducer
