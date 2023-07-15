@@ -1,7 +1,7 @@
-export const theme = {
+const theme = {
   colors: {
-    primary: 'blue',
-    secondary: 'gray'
+    primary: '#c20c0c',
+    secondary: '#C10D0C'
   },
   size: {},
   // 混入 - 通过字符串进行混入
@@ -12,3 +12,5 @@ export const theme = {
     `
   }
 }
+
+export default theme

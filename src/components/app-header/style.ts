@@ -12,6 +12,9 @@ export const HeaderWrapper = styled.div`
     display: flex;
     /* 主轴方向，元素均匀排列，首尾元素排列在容器两端 */
     justify-content: space-between;
+
+    /* 使用主题样式 */
+    ${(props) => props.theme.mixin.wrapv1}
   }
 
   /* 头部导航栏下面的分割线 */
