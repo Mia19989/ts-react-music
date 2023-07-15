@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import CounterReducer from './modules/counter'
+import RecommendReducer from '@/views/discover/child-views/recommend/store'
 
 // 创建 store
 const store = configureStore({
   reducer: {
-    counter: CounterReducer
+    counter: CounterReducer,
+    recommend: RecommendReducer
   }
 })
 
