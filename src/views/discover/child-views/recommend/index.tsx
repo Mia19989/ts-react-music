@@ -17,7 +17,6 @@ const Recommend: React.FC<IProps> = () => {
 
   return (
     <div>
-      <div>Recommend</div>
       <TopBanner></TopBanner>
     </div>
   )
