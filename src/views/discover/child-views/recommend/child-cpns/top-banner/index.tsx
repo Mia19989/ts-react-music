@@ -1,9 +1,10 @@
-import React, { memo, useRef } from 'react'
+import React, { memo, useRef, useState } from 'react'
 import type { ReactNode, ElementRef } from 'react'
 import { shallowEqual } from 'react-redux'
 import { Carousel } from 'antd'
 import { BannerControl, BannerLeft, BannerRight, BannerWrapper } from './style'
 import { useAppSelector } from '@/store/hook'
+import { url } from 'inspector'
 
 interface IProps {
   children?: ReactNode
@@ -12,6 +13,7 @@ interface IProps {
 const TopBanner: React.FC<IProps> = () => {
   // 创建 ref 对象，注意类型约束，初始值设置 null
   const bannerRef = useRef<ElementRef<typeof Carousel>>(null)
+  const [currIndex, setCurIndex] = useState(0)
 
   // 获取 state 中 banner 数据
   const { banners } = useAppSelector(
@@ -32,11 +34,30 @@ const TopBanner: React.FC<IProps> = () => {
     bannerRef?.current?.next()
   }
 
+  /** 切换面板的回调 */
+  const handleAfterChange = (current: number) => {
+    setCurIndex(current)
+  }
+
+  let bagImg = banners[currIndex]?.imageUrl
+  if (bagImg) {
+    bagImg = `${bagImg}?imageView&blur=40x20`
+  }
+
   return (
-    <BannerWrapper>
+    <BannerWrapper
+      style={{
+        background: `url(${bagImg}) center center / 6000px`
+      }}
+    >
       <div className="banner wrap-v2">
         <BannerLeft>
-          <Carousel autoplay ref={bannerRef}>
+          <Carousel
+            autoplay
+            ref={bannerRef}
+            effect="fade"
+            afterChange={handleAfterChange}
+          >
             {banners.map((item) => (
               <div key={item.imageUrl} className="banner-item">
                 <img
