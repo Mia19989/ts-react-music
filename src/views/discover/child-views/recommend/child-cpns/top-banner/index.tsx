@@ -2,9 +2,9 @@ import React, { memo, useRef, useState } from 'react'
 import type { ReactNode, ElementRef } from 'react'
 import { shallowEqual } from 'react-redux'
 import { Carousel } from 'antd'
+import classNames from 'classnames'
 import { BannerControl, BannerLeft, BannerRight, BannerWrapper } from './style'
 import { useAppSelector } from '@/store/hook'
-import { url } from 'inspector'
 
 interface IProps {
   children?: ReactNode
@@ -39,15 +39,16 @@ const TopBanner: React.FC<IProps> = () => {
     setCurIndex(current)
   }
 
-  let bagImg = banners[currIndex]?.imageUrl
-  if (bagImg) {
-    bagImg = `${bagImg}?imageView&blur=40x20`
+  // 获取背景图片
+  let bgImgUrl = banners[currIndex]?.imageUrl
+  if (bgImgUrl) {
+    bgImgUrl = `${bgImgUrl}?imageView&blur=40x20`
   }
 
   return (
     <BannerWrapper
       style={{
-        background: `url(${bagImg}) center center / 6000px`
+        background: `url(${bgImgUrl}) center center / 6000px`
       }}
     >
       <div className="banner wrap-v2">
@@ -56,6 +57,7 @@ const TopBanner: React.FC<IProps> = () => {
             autoplay
             ref={bannerRef}
             effect="fade"
+            dots={false}
             afterChange={handleAfterChange}
           >
             {banners.map((item) => (
@@ -68,6 +70,18 @@ const TopBanner: React.FC<IProps> = () => {
               </div>
             ))}
           </Carousel>
+          <ul className="dots">
+            {banners.map((item, index) => (
+              // 使用 classnames 实现动态添加 class
+              <li key={item.imageUrl}>
+                <span
+                  className={classNames('item', {
+                    active: index === currIndex
+                  })}
+                ></span>
+              </li>
+            ))}
+          </ul>
         </BannerLeft>
         <BannerRight></BannerRight>
 
