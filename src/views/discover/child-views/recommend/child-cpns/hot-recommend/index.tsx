@@ -1,12 +1,18 @@
 import React, { memo } from 'react'
 import type { ReactNode } from 'react'
 import AreaHeaderV1 from '@/components/area-header-v1'
+import { useAppSelector } from '@/store/hook'
 
 interface IProps {
   children?: ReactNode
 }
 
 const HotRecommend: React.FC<IProps> = () => {
+  // 获取热门推荐数据
+  const { hotRecommends } = useAppSelector((state) => ({
+    hotRecommends: state.recommend.hotRecommends
+  }))
+
   return (
     <div>
       <AreaHeaderV1
@@ -15,7 +21,9 @@ const HotRecommend: React.FC<IProps> = () => {
         moreText="更多"
         moreLink="/discover/songs"
       />
-      HotRecommend
+      {hotRecommends.map((item) => (
+        <div key={item?.id}>{item?.name}</div>
+      ))}
     </div>
   )
 }

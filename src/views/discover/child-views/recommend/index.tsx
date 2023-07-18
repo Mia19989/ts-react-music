@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react'
 import type { ReactNode } from 'react'
-import { fetchBannerDataAction } from './store'
+import { fetchBannerDataAction, fetchHotRecommendAction } from './store'
 import { useAppDispatch } from '@/store/hook'
 import TopBanner from './child-cpns/top-banner'
 import { RecommendWrapper } from './style'
@@ -15,6 +15,7 @@ const Recommend: React.FC<IProps> = () => {
 
   useEffect(() => {
     dispatch(fetchBannerDataAction())
+    dispatch(fetchHotRecommendAction())
   }, [])
 
   return (
