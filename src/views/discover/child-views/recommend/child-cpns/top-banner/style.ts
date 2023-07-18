@@ -67,6 +67,8 @@ export const BannerControl = styled.div`
   /* absolute 设置 top 结合 transform 实现垂直居中 */
   top: 50%;
   transform: translateY(-50%);
+  /* 注意：要设置自身高度 */
+  height: 63px;
 
   .btn {
     /* position 是不可继承属性，默认值是 static */
