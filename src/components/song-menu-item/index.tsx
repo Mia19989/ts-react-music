@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import type { ReactNode } from 'react'
 import { MenuItemWrapper } from './style'
 import { HotRecommendsState } from '@/views/discover/child-views/recommend/store'
+import { formatCount, getImageSize } from '@/utils/format'
 
 interface IProps {
   children?: ReactNode
@@ -14,12 +15,15 @@ const SongMenuItem: React.FC<IProps> = (props) => {
   return (
     <MenuItemWrapper>
       <div className="top">
-        <img src={itemData?.picUrl} alt={itemData?.name} />
+        <img
+          src={getImageSize(String(itemData?.picUrl), 140)}
+          alt={itemData?.name}
+        />
         <div className="sprite_cover cover">
           <div className="sprite_cover info">
             <span>
               <i className="sprite_icon headset"></i>
-              <span>{itemData?.playCount}</span>
+              <span>{formatCount(Number(itemData?.playCount))}</span>
             </span>
             <i className="sprite_icon play" />
           </div>
