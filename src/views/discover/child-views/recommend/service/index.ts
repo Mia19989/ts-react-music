@@ -8,9 +8,19 @@ export const getBanners = () => {
 }
 
 /** 请求热门推荐数据 */
-export const getHotRecommends = ({ limit = 30 }) => {
+export const getHotRecommends = (limit = 30) => {
   return hccRequest.get({
     url: '/personalized',
+    params: {
+      limit
+    }
+  })
+}
+
+/** 请求新碟上架数据 */
+export const getNewAlbums = (limit = 10) => {
+  return hccRequest.get({
+    url: '/album/newest',
     params: {
       limit
     }
