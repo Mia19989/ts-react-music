@@ -26,3 +26,13 @@ export const getNewAlbums = (limit = 10) => {
     }
   })
 }
+
+/** 请求榜单数据 */
+export const getTopRanking = (id: number) => {
+  return hccRequest.get({
+    url: '/playlist/detail',
+    params: {
+      id
+    }
+  })
+}
